@@ -1,0 +1,67 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class PetDisplayApp extends JFrame {
+    private JLabel petLabel;
+    private JRadioButton birdButton, catButton, dogButton, rabbitButton, pigButton;
+
+    public PetDisplayApp() {
+        setTitle("Pet Display App");
+        setSize(300, 200);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
+
+        petLabel = new JLabel();
+        add(petLabel);
+
+        birdButton = new JRadioButton("Bird");
+        catButton = new JRadioButton("Cat");
+        dogButton = new JRadioButton("Dog");
+        rabbitButton = new JRadioButton("Rabbit");
+        pigButton = new JRadioButton("Pig");
+
+        ButtonGroup group = new ButtonGroup();
+        group.add(birdButton);
+        group.add(catButton);
+        group.add(dogButton);
+        group.add(rabbitButton);
+        group.add(pigButton);
+
+        add(birdButton);
+        add(catButton);
+        add(dogButton);
+        add(rabbitButton);
+        add(pigButton);
+
+        ActionListener listener = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (birdButton.isSelected()) {
+                    petLabel.setIcon(new ImageIcon("bird.jpg"));
+                } else if (catButton.isSelected()) {
+                    petLabel.setIcon(new ImageIcon("cat.jpg"));
+                } else if (dogButton.isSelected()) {
+                    petLabel.setIcon(new ImageIcon("dog.jpg"));
+                } else if (rabbitButton.isSelected()) {
+                    petLabel.setIcon(new ImageIcon("rabbit.jpg"));
+                } else if (pigButton.isSelected()) {
+                    petLabel.setIcon(new ImageIcon("pig.jpg"));
+                }
+            }
+        };
+
+        birdButton.addActionListener(listener);
+        catButton.addActionListener(listener);
+        dogButton.addActionListener(listener);
+        rabbitButton.addActionListener(listener);
+        pigButton.addActionListener(listener);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new PetDisplayApp().setVisible(true);
+            }
+        });
+    }
+}
